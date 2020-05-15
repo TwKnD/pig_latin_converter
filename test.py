@@ -1,5 +1,5 @@
 # check  for special char at end of str after space.
-def c1(string):
+def e1(string):
     l = []
     for w in string.split():
         print(w)
@@ -13,12 +13,12 @@ def c1(string):
     return ' '.join(l)
 
 
-def c1r(string):
+def e1r(string):
     return ' '.join([w[1:]+w[0]+'ay' if w.isalpha() else w for w in string.split()])
 
 
 # check for special char at end of word.
-def e1(string):
+def w1(string):
     l = []
     for w in string.split():
         print(w)
@@ -31,8 +31,19 @@ def e1(string):
 
 
 # Combine both checks
+def b1(string):
+    l = []
+    for w in string.split():
+        if not w[-1].isalpha() and w[:-1].isalpha():
+            l.append(w[1:-1] + w[0] + 'ay' + w[-1])
+        elif not w.isalpha():
+            l.append(w)
+        else:
+            l.append(w[1:] + w[0] + 'ay')
+
+    return ' '.join(l)
 
 
-print(e1('test test !'))
-print(e1('test test!'))
-print(e1('test test !!!'))
+print(b1('test test !'))
+print(b1('test test!'))
+print(b1('test test !!!'))
