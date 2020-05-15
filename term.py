@@ -2,14 +2,6 @@
 Terminal pig-latin converter
 Author: TwKnD
 """
-# TODO: Fix to_english()
-# TODO: Check for punctuation at end of string.
-# ' '.join([w[1:]+w[0]+'ay' if w isalpha() else w for w in text.split()])
-# TODO: Check for punctuation at end of words.
-# TODO: Reference wikipedia for real pig latin. mum & gma??
-# TODO: Implement 'would you like to convert another
-#       yes = get_conversion(), no = exit_converter()
-
 import os
 
 
@@ -19,10 +11,29 @@ class App:
         self.run = True
 
     def to_pig_latin(self, string):
-        return ' '.join([(w[1:] + w[0] + 'ay') for w in string.split()])
+        l1 = []
+        for w in string.split():
+            if not w[-1].isalpha() and w[:-1].isalpha():
+                l1.append(w[1:-1] + w[0] + 'ay' + w[-1])
+            elif not w.isalpha():
+                l1.append(w)
+            else:
+                l1.append(w[1:] + w[0] + 'ay')
+
+        return ' '.join(l1).capitalize()
 
     def to_english(self, string):
-        return ' '.join([(w[-3:-2] + w[0]) for w in string.split()])
+        l1 = []
+        print('start:', string)
+        for w in string.split():
+            print(w)
+            if w.isalpha():
+                l1.append(w[-3] + w[:-3])
+            elif len(w) > 3:
+                l1.append(w[-4] + w[:-4] + w[-1])
+            else:
+                l1.append(w)
+        return ' '.join(l1).capitalize()
 
     def get_convertion(self):
         print("\n\n\n")
