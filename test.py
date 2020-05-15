@@ -6,7 +6,17 @@ def to_pig(string):
 
 def to_en(string):
     # pig latin to english
-    return ' '.join([(w[-3:-2] + w[0]) for w in string.split()])
+    # return ' '.join([(w[-3] + w[:-3]) for w in string.split()])
+    print('string = ' + string)
+    l1 = []
+    for w in string.split():
+        print(w)
+        if len(w) >= 3:
+            l1.append(w[-3] + w[:-3])
+        else:
+            l1.append(w)
+
+    return ' '.join(l1).capitalize()
 
 
 # check  for special char at end of str after space.
@@ -58,23 +68,28 @@ def b1(string):
 
 
 def b2(string):
-    # Pig Latin to english
-    # ' '.join([(w[-3:-2] + w[0]) for w in string.split()])
-    pass
-#    l1 = []
-#    for w in string.split():
-#        if not w[-1].issalpha() and w[:-1].isalpha():
-#            l1.append(w[-3]
+    l1 = []
+    print('start:', string)
+    for w in string.split():
+        print(w)
+        if w.isalpha():
+            l1.append(w[-3] + w[:-3])
+        elif len(w) > 3:
+            l1.append(w[-4] + w[:-4] + w[-1])
+        else:
+            l1.append(w)
+    return ' '.join(l1).capitalize()
 
 
 # Tests ENG to PIG
-print(b1('test test !'))
-print(b1('test test!'))
-print(b1('test test !!!'))
-print(b1('This line, Is a test line.'))
+# print(b1('test test !'))
+# print(b1('test test!'))
+# print(b1('test test !!!'))
+# print(b1('This line, Is a test line.'))
 
 # Tests PIG to  ENG
-print(to_en('Esttay esstay !'))
-print(to_en('Esttay esttay!'))
-print(to_en('Esttay esttay !!!'))
-print(to_en('Histay inelay, siay aay esttay inelay'))
+print(b2('Esttay esttay !'))
+print(b2('Esttay esttay!'))
+print(b2('Esttay esttay !!!'))
+print(b2('Iay'))
+print(b2('Histay inelay, siay aay esttay inelay.'))
