@@ -2,6 +2,7 @@
 Terminal pig-latin converter
 Author: TwKnD
 """
+# TODO: Fix to_english()
 # TODO: Check for punctuation at end of string.
 # ' '.join([w[1:]+w[0]+'ay' if w isalpha() else w for w in text.split()])
 # TODO: Check for punctuation at end of words.
