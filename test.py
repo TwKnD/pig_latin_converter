@@ -45,7 +45,6 @@ def w1(string):
 # Combine both checks
 def b1(string):
     # english to Pig Latin
-    # TODO: Convert to lower.
     l1 = []
     for w in string.split():
         if not w[-1].isalpha() and w[:-1].isalpha():
@@ -55,7 +54,7 @@ def b1(string):
         else:
             l1.append(w[1:] + w[0] + 'ay')
 
-    return ' '.join(l1)
+    return ' '.join(l1).capitalize()
 
 
 def b2(string):
