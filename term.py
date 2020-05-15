@@ -9,6 +9,8 @@ class App:
 
     def __init__(self):
         self.run = True
+        os.system('clear')
+        # TODO: Add welcome message with description of pig latin.
 
     def to_pig_latin(self, string):
         l1 = []
@@ -36,7 +38,7 @@ class App:
         return ' '.join(l1).capitalize()
 
     def get_convertion(self):
-        print("\n\n\n")
+        print("\n\n")
         print("to Pig Latin: Pig")
         print("to English: English")
         print("Q to quit")
@@ -58,6 +60,7 @@ class App:
 
         while self.run:
             convert_to = self.get_convertion()
+            # TODO: Add ask if convert again.
 
             if convert_to == 'q':
                 self.exit_converter()
@@ -67,15 +70,15 @@ class App:
                 og_string = self.get_string()
                 string = self.to_pig_latin(og_string)
                 os.system('clear')
-                print("English: \n" + og_string)
-                print("Pig Latin: \n" + string)
+                print("\n\nEnglish: \n" + og_string)
+                print("\n\nPig Latin: \n" + string)
 
             elif convert_to == 'e':
                 og_string = self.get_string()
                 string = self.to_english(og_string)
                 os.system('clear')
-                print("Pig Latin: \n" + og_string)
-                print("English: \n" + string)
+                print("\n\nPig Latin: \n" + og_string)
+                print("\n\nEnglish: \n" + string)
 
 
 the_app = App()
