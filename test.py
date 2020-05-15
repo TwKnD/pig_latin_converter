@@ -1,3 +1,13 @@
+# initial versions
+def to_pig(string):
+    # english to pig  latin
+    pass
+
+
+def to_en(string):
+    # pig latin to english
+    pass
+
 # check  for special char at end of str after space.
 def e1(string):
     l = []
@@ -32,6 +42,7 @@ def w1(string):
 
 # Combine both checks
 def b1(string):
+    # english to Pig Latin
     l = []
     for w in string.split():
         if not w[-1].isalpha() and w[:-1].isalpha():
@@ -43,6 +54,11 @@ def b1(string):
 
     return ' '.join(l)
 
+
+def b2(string):
+    # Pig Latin to english
+    pass
+    
 
 print(b1('test test !'))
 print(b1('test test!'))
