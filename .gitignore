@@ -1,0 +1,11 @@
+# api
+config.py
+
+# python cache
+__pycache__
+*.pyc
+*.pyo
+
+# Vim Swap files
+*.swo
+*.swp
