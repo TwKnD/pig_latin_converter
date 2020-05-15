@@ -1,12 +1,12 @@
 # initial versions
 def to_pig(string):
     # english to pig  latin
-    pass
+    return ' '.join([(w[1:] + w[0] + 'ay') for w in string.split()])
 
 
 def to_en(string):
     # pig latin to english
-    pass
+    return ' '.join([(w[-3:-2] + w[0]) for w in string.split()])
 
 
 # check  for special char at end of str after space.
@@ -59,10 +59,22 @@ def b1(string):
 
 def b2(string):
     # Pig Latin to english
+    # ' '.join([(w[-3:-2] + w[0]) for w in string.split()])
     pass
+#    l1 = []
+#    for w in string.split():
+#        if not w[-1].issalpha() and w[:-1].isalpha():
+#            l1.append(w[-3]
 
 
+# Tests ENG to PIG
 print(b1('test test !'))
 print(b1('test test!'))
 print(b1('test test !!!'))
 print(b1('This line, Is a test line.'))
+
+# Tests PIG to  ENG
+print(to_en('Esttay esstay !'))
+print(to_en('Esttay esttay!'))
+print(to_en('Esttay esttay !!!'))
+print(to_en('Histay inelay, siay aay esttay inelay'))
