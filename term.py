@@ -2,13 +2,6 @@
 Terminal pig-latin converter
 Author: TwKnD
 """
-# TODO: Check for punctuation at end of string.
-# ' '.join([w[1:]+w[0]+'ay' if w isalpha() else w for w in text.split()])
-# TODO: Check for punctuation at end of words.
-# TODO: Reference wikipedia for real pig latin. mum & gma??
-# TODO: Implement 'would you like to convert another
-#       yes = get_conversion(), no = exit_converter()
-
 import os
 
 
@@ -16,15 +9,36 @@ class App:
 
     def __init__(self):
         self.run = True
+        os.system('clear')
+        # TODO: Add welcome message with description of pig latin.
 
     def to_pig_latin(self, string):
-        return ' '.join([(w[1:] + w[0] + 'ay') for w in string.split()])
+        l1 = []
+        for w in string.split():
+            if not w[-1].isalpha() and w[:-1].isalpha():
+                l1.append(w[1:-1] + w[0] + 'ay' + w[-1])
+            elif not w.isalpha():
+                l1.append(w)
+            else:
+                l1.append(w[1:] + w[0] + 'ay')
+
+        return ' '.join(l1).capitalize()
 
     def to_english(self, string):
-        return ' '.join([(w[-3:-2] + w[0]) for w in string.split()])
+        l1 = []
+        print('start:', string)
+        for w in string.split():
+            print(w)
+            if w.isalpha():
+                l1.append(w[-3] + w[:-3])
+            elif len(w) > 3:
+                l1.append(w[-4] + w[:-4] + w[-1])
+            else:
+                l1.append(w)
+        return ' '.join(l1).capitalize()
 
     def get_convertion(self):
-        print("\n\n\n")
+        print("\n\n")
         print("to Pig Latin: Pig")
         print("to English: English")
         print("Q to quit")
@@ -46,6 +60,7 @@ class App:
 
         while self.run:
             convert_to = self.get_convertion()
+            # TODO: Add ask if convert again.
 
             if convert_to == 'q':
                 self.exit_converter()
@@ -55,15 +70,15 @@ class App:
                 og_string = self.get_string()
                 string = self.to_pig_latin(og_string)
                 os.system('clear')
-                print("English: \n" + og_string)
-                print("Pig Latin: \n" + string)
+                print("\n\nEnglish: \n" + og_string)
+                print("\n\nPig Latin: \n" + string)
 
             elif convert_to == 'e':
                 og_string = self.get_string()
                 string = self.to_english(og_string)
                 os.system('clear')
-                print("Pig Latin: \n" + og_string)
-                print("English: \n" + string)
+                print("\n\nPig Latin: \n" + og_string)
+                print("\n\nEnglish: \n" + string)
 
 
 the_app = App()
