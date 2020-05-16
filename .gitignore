@@ -9,3 +9,6 @@ __pycache__
 # Vim Swap files
 *.swo
 *.swp
+
+# Pylint config
+.pylintrc

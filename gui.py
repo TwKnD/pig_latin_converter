@@ -7,7 +7,8 @@ import sys
 from PyQt5.QtWidgets import (QApplication, QMainWindow, QWidget,
                              QVBoxLayout, QHBoxLayout,
                              QLabel, QPushButton, QPlainTextEdit)
-from PyQt5 import QtCore
+# from PyQt5 import QtCore
+# pylint: disable=missing-function-docstring
 
 
 class Window(QMainWindow):
@@ -18,7 +19,6 @@ class Window(QMainWindow):
     def __init__(self):
         super().__init__()
         self.setWindowTitle("Pig Latin Converter")
-
         self.build_objects()
         self.position_objects()
 
@@ -33,13 +33,13 @@ class Window(QMainWindow):
         self.info = QLabel(info_text)
         # self.info.alignment(QtCore.Qt.AlignCenter)
 
-        self.b1 = QPushButton()
-        self.b1.setText("Convert ->")
-        self.b1.clicked.connect(self.to_pig)
+        self.but_1 = QPushButton()
+        self.but_1.setText("Convert ->")
+        self.but_1.clicked.connect(self.to_pig)
 
-        self.b2 = QPushButton()
-        self.b2.setText("<- Convert")
-        self.b2.clicked.connect(self.to_eng)
+        self.but_2 = QPushButton()
+        self.but_2.setText("<- Convert")
+        self.but_2.clicked.connect(self.to_eng)
 
         en_text = "English"
         pig_text = "Pig Latin"
@@ -56,9 +56,9 @@ class Window(QMainWindow):
 
         vbox.addWidget(self.info)
         hbox1.addWidget(self.label_eng)
-        hbox1.addWidget(self.b1)
+        hbox1.addWidget(self.but_1)
         hbox1.addWidget(self.label_pig)
-        hbox1.addWidget(self.b2)
+        hbox1.addWidget(self.but_2)
         hbox2.addWidget(self.ed1)
         hbox2.addWidget(self.ed2)
         vbox.addLayout(hbox1)
@@ -66,10 +66,10 @@ class Window(QMainWindow):
 
         self.wid.setLayout(vbox)
 
-    def to_pig():
+    def to_pig(self):
         pass
 
-    def to_eng():
+    def to_eng(self):
         pass
 
 
