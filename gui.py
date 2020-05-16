@@ -67,9 +67,23 @@ class Window(QMainWindow):
         self.wid.setLayout(vbox)
 
     def to_pig(self):
+        # get string from ENG text edit
+        # pass string to_pig
+        # change PL text edit with results
         pass
 
     def to_eng(self):
+        # get string from PL text edit
+        # pass string to_eng
+        # change ENG text edit with results
+        pass
+
+    def pig_converter(self, string):
+        # take in str, convert to PL, return string
+        pass
+
+    def english_converter(self, string):
+        # take in str, convert to ENG, return string
         pass
 
 
