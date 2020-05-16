@@ -9,6 +9,10 @@ from PyQt5.QtWidgets import (QApplication, QMainWindow, QWidget,
                              QLabel, QPushButton, QPlainTextEdit)
 # from PyQt5 import QtCore
 # pylint: disable=missing-function-docstring
+# TODO: Center info text
+# TODO: Add padding around info text
+# TODO: Right align 'Pig Latin' label
+# TODO: Explore using frames for each hbox to reduce instance attributes.
 
 
 class Window(QMainWindow):
@@ -57,8 +61,8 @@ class Window(QMainWindow):
         vbox.addWidget(self.info)
         hbox1.addWidget(self.label_eng)
         hbox1.addWidget(self.but_1)
-        hbox1.addWidget(self.label_pig)
         hbox1.addWidget(self.but_2)
+        hbox1.addWidget(self.label_pig)
         hbox2.addWidget(self.ed1)
         hbox2.addWidget(self.ed2)
         vbox.addLayout(hbox1)
@@ -67,24 +71,37 @@ class Window(QMainWindow):
         self.wid.setLayout(vbox)
 
     def to_pig(self):
-        # get string from ENG text edit
-        # pass string to_pig
-        # change PL text edit with results
-        pass
+        text = self.ed1.toPlainText()
+        self.ed2.setPlainText(self.pig_converter(text))
 
     def to_eng(self):
-        # get string from PL text edit
-        # pass string to_eng
-        # change ENG text edit with results
-        pass
+        text = self.ed2.toPlainText()
+        self.ed1.setPlainText(self.english_converter(text))
 
     def pig_converter(self, string):
-        # take in str, convert to PL, return string
-        pass
+        l1 = []
+        for w in string.split():
+            if not w[-1].isalpha() and w[:-1].isalpha():
+                l1.append(w[1:-1] + w[0] + 'ay' + w[-1])
+            elif not w.isalpha():
+                l1.append(w)
+            else:
+                l1.append(w[1:] + w[0] + 'ay')
+
+        return ' '.join(l1).capitalize()
 
     def english_converter(self, string):
-        # take in str, convert to ENG, return string
-        pass
+        l1 = []
+        print('start:', string)
+        for w in string.split():
+            print(w)
+            if w.isalpha():
+                l1.append(w[-3] + w[:-3])
+            elif len(w) > 3:
+                l1.append(w[-4] + w[:-4] + w[-1])
+            else:
+                l1.append(w)
+        return ' '.join(l1).capitalize()
 
 
 if __name__ == "__main__":
