@@ -7,12 +7,8 @@ import sys
 from PyQt5.QtWidgets import (QApplication, QMainWindow, QWidget,
                              QVBoxLayout, QHBoxLayout,
                              QLabel, QPushButton, QPlainTextEdit)
-# from PyQt5 import QtCore
+from PyQt5 import QtCore, QtGui
 # pylint: disable=missing-function-docstring
-# TODO: Center info text
-# TODO: Add padding around info text
-# TODO: Right align 'Pig Latin' label
-# TODO: Explore using frames for each hbox to reduce instance attributes.
 
 
 class Window(QMainWindow):
@@ -22,7 +18,7 @@ class Window(QMainWindow):
 
     def __init__(self):
         super().__init__()
-        self.setWindowTitle("Pig Latin Converter")
+        self.setWindowTitle("Simple Pig Latin Converter")
         self.build_objects()
         self.position_objects()
 
@@ -33,9 +29,6 @@ class Window(QMainWindow):
         self.setCentralWidget(self.wid)
 
         self.setGeometry(400, 100, 600, 400)
-        info_text = "A simple Pig Latin Converter"
-        self.info = QLabel(info_text)
-        # self.info.alignment(QtCore.Qt.AlignCenter)
 
         self.but_1 = QPushButton()
         self.but_1.setText("Convert ->")
@@ -45,10 +38,13 @@ class Window(QMainWindow):
         self.but_2.setText("<- Convert")
         self.but_2.clicked.connect(self.to_eng)
 
-        en_text = "English"
-        pig_text = "Pig Latin"
-        self.label_eng = QLabel(en_text)
-        self.label_pig = QLabel(pig_text)
+        my_font = QtGui.QFont("Arial", 12, QtGui.QFont.Black)
+        self.label_eng = QLabel("English")
+        self.label_pig = QLabel("Pig Latin")
+        self.label_eng.setAlignment(QtCore.Qt.AlignCenter)
+        self.label_pig.setAlignment(QtCore.Qt.AlignCenter)
+        self.label_eng.setFont(my_font)
+        self.label_pig.setFont(my_font)
 
         self.ed1 = QPlainTextEdit()
         self.ed2 = QPlainTextEdit()
@@ -58,7 +54,6 @@ class Window(QMainWindow):
         hbox1 = QHBoxLayout()
         hbox2 = QHBoxLayout()
 
-        vbox.addWidget(self.info)
         hbox1.addWidget(self.label_eng)
         hbox1.addWidget(self.but_1)
         hbox1.addWidget(self.but_2)
@@ -67,6 +62,9 @@ class Window(QMainWindow):
         hbox2.addWidget(self.ed2)
         vbox.addLayout(hbox1)
         vbox.addLayout(hbox2)
+
+        vbox.setContentsMargins(22, 22, 22, 22)
+        vbox.setSpacing(12)
 
         self.wid.setLayout(vbox)
 
@@ -78,6 +76,8 @@ class Window(QMainWindow):
         text = self.ed2.toPlainText()
         self.ed1.setPlainText(self.english_converter(text))
 
+    # pylint: disable=invalid-name
+    # pylint: disable=no-self-use
     def pig_converter(self, string):
         l1 = []
         for w in string.split():
@@ -102,6 +102,8 @@ class Window(QMainWindow):
             else:
                 l1.append(w)
         return ' '.join(l1).capitalize()
+    # pylint: enable=invalid-name
+    # pylint: enable=no-self-use
 
 
 if __name__ == "__main__":
